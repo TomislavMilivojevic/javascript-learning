@@ -5,7 +5,7 @@
 }
 
 .background {
-  background-color: #121b1b;
+  background-color: #12181b;
   height: 100vh;
   padding-top: 1px;
 }
@@ -37,8 +37,8 @@
   max-width: 300px;
 }
 
-.title {
-  border: 1px sold whie;
+.tile {
+  border: 1px solid white;
   min-width: 100px;
   min-height: 100px;
   display: flex;
@@ -51,6 +51,7 @@
 .playerX {
   color: #09c372;
 }
+
 .playerO {
   color: #498afb;
 }
@@ -63,8 +64,7 @@
   margin-top: 1em;
 }
 
-#reset {
-  background-color: tomato;
+.controls button {
   color: white;
   padding: 8px;
   border-radius: 8px;
@@ -72,4 +72,12 @@
   font-size: 20px;
   margin-left: 1em;
   cursor: pointer;
+}
+
+.restart {
+  background-color: #498afb;
+}
+
+#reset {
+  background-color: #ff3860;
 }
