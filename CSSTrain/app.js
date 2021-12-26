@@ -36,16 +36,69 @@ const resetFunction = () => {
 };
 
 const handleButoane = (e) => {
+  // Fix Bug decimala
+  if (ecranUnu.innerText.length < 1 && e.target.innerText === ".") {
+    return;
+  }
+  // Fix bug atunci cand primul caracter introdus la startul aplicatiei este semnul "-"
+  if (
+    ecranUnu.innerText === "" &&
+    ecranDoi.innerText === "" &&
+    ecranOperator.innerText === "-"
+  ) {
+    ecranUnu.innerText += ecranOperator.innerText;
+  }
+  // Return standard
   ecranUnu.innerText += e.target.innerText;
 };
 
-const executaActiune = (semnVechi, semnNou) => {
-  if (
-    (ecranDoi.innerText === "" || ecranUnu.innerText === "") &&
-    semnNou.innerText === "="
-  ) {
+const handleEgal = () => {
+  if (ecranUnu.innerText === "" || ecranDoi.innerText === "") {
     return;
+  } else {
+    numarUnu = parseFloat(ecranUnu.innerText);
+    numarDoi = parseFloat(ecranDoi.innerText);
+    if (ecranOperator.innerText === "+") {
+      rezultat = numarUnu + numarDoi;
+      console.log(rezultat);
+      ecranDoi.innerText = rezultat;
+
+      ecranUnu.innerText = "";
+    } else if (ecranOperator.innerText === "/") {
+      rezultat = numarUnu / numarDoi;
+      console.log(rezultat);
+      ecranDoi.innerText = rezultat;
+
+      ecranUnu.innerText = "";
+    } else if (ecranOperator.innerText === "-") {
+      rezultat = numarUnu - numarDoi;
+      console.log(rezultat);
+      ecranDoi.innerText = rezultat;
+
+      ecranUnu.innerText = "";
+    } else if (ecranOperator.innerText === "*") {
+      rezultat = numarUnu * numarDoi;
+      console.log(rezultat);
+      ecranDoi.innerText = rezultat;
+
+      ecranUnu.innerText = "";
+    } else if (ecranOperator.innerText === "%") {
+      rezultat = numarUnu % numarDoi;
+      console.log(rezultat);
+      ecranDoi.innerText = rezultat;
+
+      ecranUnu.innerText = "";
+    } else if (ecranOperator.innerText === "=") {
+      rezultat = numarUnu % numarDoi;
+      console.log(rezultat);
+      ecranDoi.innerText = rezultat;
+
+      ecranUnu.innerText = "";
+    }
   }
+};
+
+const executaActiune = (semnVechi) => {
   if (semnVechi === "+") {
     rezultat = numarUnu + numarDoi;
     console.log(rezultat);
@@ -85,7 +138,7 @@ const executaActiune = (semnVechi, semnNou) => {
   }
 };
 
-handleActiune = (e) => {
+const handleActiune = (e) => {
   // Multiple apasari ale unui buton de semn
 
   if (
@@ -122,7 +175,7 @@ handleActiune = (e) => {
     numarDoi = parseFloat(ecranUnu.innerText);
     ecranUnu.innerText = "";
     // ExecutamOperatia
-    executaActiune(operatorVechi, operator);
+    executaActiune(operatorVechi);
   }
 };
 
@@ -138,4 +191,4 @@ reset.addEventListener("click", resetFunction);
 
 backSpace.addEventListener("click", backFunction);
 
-butonEgal.addEventListener("click", handleActiune);
+butonEgal.addEventListener("click", handleEgal);
