@@ -12,7 +12,7 @@ const butonEgal = document.getElementById("egal");
 
 const reset = document.getElementById("reset");
 const backSpace = document.getElementById("back");
-
+/* EXISTA UN BUG ATUNCI CAND PORNIM APLICATIA, NUMARUL DOI APARE CA "undefined" la prima operatie*/
 // variabile globale :((
 let numarUnu;
 let numarDoi;
