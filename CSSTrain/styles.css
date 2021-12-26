@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+h1 {
+  text-align: center;
+}
 body {
   margin: 0;
 }
@@ -23,6 +26,14 @@ body {
   border: 2px solid #1b1816;
 }
 
+.actiuni {
+  background-color: grey;
+}
+.buttonz {
+  color: whitesmoke;
+  background-color: tomato;
+}
+
 .buttons:hover {
   background-color: rgb(0, 214, 252);
 }
@@ -39,23 +50,18 @@ body {
   display: block;
   font-family: arial;
   font-size: 24px;
-  margin-left: 40%;
-  width: max-content;
-  outline: dashed 1px black;
+  margin: auto;
+  width: 400px;
 }
-.operatii,
-.misc {
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  grid-template-columns: repeat(4, auto);
-}
+
 #screen-two {
+  text-align: center;
   display: block;
   height: 25px;
   background-color: rgb(197, 138, 245);
 }
 #screen-one {
+  text-align: center;
   display: block;
   height: 25px;
   min-width: 300px;
@@ -63,6 +69,7 @@ body {
 }
 
 #operator-screen {
+  text-align: center;
   display: block;
   height: 25px;
   min-width: 25px;

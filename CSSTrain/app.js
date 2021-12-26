@@ -8,12 +8,32 @@ const ecranDoi = document.getElementById("screen-two");
 // Ecran Operator
 const ecranOperator = document.getElementById("operator-screen");
 
+const butonEgal = document.getElementById("egal");
+
+const reset = document.getElementById("reset");
+const backSpace = document.getElementById("back");
+
 // variabile globale
 let numarUnu;
 let numarDoi;
 let rezultat;
 let operator;
 let operatorVechi;
+
+const backFunction = () => {
+  ecranUnu.innerText = ecranUnu.innerText.slice(0, -1);
+};
+
+const resetFunction = () => {
+  ecranUnu.innerText = "";
+  ecranDoi.innerText = "";
+  ecranOperator.innerText = "";
+  numarUnu = "";
+  numarDoi = "";
+  rezultat = "";
+  operator = "";
+  operatorVechi = "";
+};
 
 const handleButoane = (e) => {
   ecranUnu.innerText += e.target.innerText;
@@ -50,12 +70,17 @@ const executaActiune = (semnVechi) => {
     ecranDoi.innerText = rezultat;
 
     ecranUnu.innerText = "";
+  } else if (semnVechi === "=") {
+    rezultat = numarUnu % numarDoi;
+    console.log(rezultat);
+    ecranDoi.innerText = rezultat;
+
+    ecranUnu.innerText = "";
   }
 };
 
 handleActiune = (e) => {
-  // retinem vechium operator, va fi folosit la functia de operatii
-
+  // Multiple apasari ale unui buton de semn
   if (
     ecranUnu.innerText === "" &&
     ecranOperator.innerText != "" &&
@@ -63,26 +88,29 @@ handleActiune = (e) => {
   ) {
     return;
   }
+
+  // La urmatoarea retinem vechiul operator pentru functia de actiuni, iar noul operator pentru viitorul ciclu.
   if (ecranOperator.innerText != "") {
     operatorVechi = ecranOperator.innerText;
   }
 
+  // Clickul pe un buton de actiuni trimite operatorul pe ecran si salveaza operatorul nou
   ecranOperator.innerText = e.target.innerText;
-  // trebuie un if check daca ecranele sunt goale pentru a nu continua daca prima accesare este un operator
-
   operator = ecranOperator.innerText;
+
   console.log("OperatorNou" + operator);
   if (ecranUnu.innerText != "" && ecranDoi.innerText === "") {
-    numarUnu = parseInt(ecranUnu.innerText);
+    numarUnu = parseFloat(ecranUnu.innerText);
     ecranDoi.innerText = ecranUnu.innerText;
     ecranUnu.innerText = "";
   } else if (ecranDoi != "" && ecranUnu != "") {
     console.log("OperatorVechi" + operatorVechi);
-    numarUnu = parseInt(ecranDoi.innerText);
-    // trebuie un check pentru operatorul trecut si pentru operatorul curent(momentul clickului)
+    numarUnu = parseFloat(ecranDoi.innerText);
+
     console.log("Numar unu " + numarUnu + " " + " Numar doi " + numarDoi);
-    numarDoi = parseInt(ecranUnu.innerText);
+    numarDoi = parseFloat(ecranUnu.innerText);
     ecranUnu.innerText = "";
+    // ExecutamOperatia
     executaActiune(operatorVechi);
   }
 };
@@ -94,3 +122,7 @@ butoane.forEach((buton) => {
 actiuni.forEach((actiune) => {
   actiune.addEventListener("click", handleActiune);
 });
+
+reset.addEventListener("click", resetFunction);
+
+backSpace.addEventListener("click", backFunction);
