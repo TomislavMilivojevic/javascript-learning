@@ -1,93 +1,78 @@
-const calcDisplay = document.getElementById("screen-one");
-const calcDisplayTwo = document.getElementById("screen-two");
-const digits = Array.from(document.querySelectorAll(".buttons"));
-const backspace = document.getElementById("back");
+const butoane = Array.from(document.querySelectorAll(".buttons"));
 
-const resetButton = document.getElementById("reset");
-const operatorScreen = document.getElementById("operator-screen");
+const actiuni = Array.from(document.querySelectorAll(".actiuni"));
+//primul ecran
+const ecranUnu = document.getElementById("screen-one");
+// Al doilea ecran
+const ecranDoi = document.getElementById("screen-two");
+// Ecran Operator
+const ecranOperator = document.getElementById("operator-screen");
 
-let operatieActiva = (operator, num1, num2) => {
-  if (operator === "+") {
-    return parseInt(num1) + parseInt(num2);
-  } else if (operator === "-") {
-    return parseInt(num1) - parseInt(num2);
-  } else if (operator === "*") {
-    return parseInt(num1) * parseInt(num2);
-  } else if (operator === "/") {
-    return parseInt(num1) / parseInt(num2);
-  } else if (operator === "%") {
-    return parseInt(num1) % parseInt(num2);
+// variabile globale
+let numarUnu;
+let numarDoi;
+let rezultat;
+let operator;
+
+const handleButoane = (e) => {
+  ecranUnu.innerText += e.target.innerText;
+};
+
+handleActiune = (e) => {
+  ecranOperator.innerText = e.target.innerText;
+  // trebuie un if check daca ecranele sunt goale pentru a nu continua daca prima accesare este un operator
+
+  let operator = ecranOperator.innerText;
+  if (ecranUnu.innerText != "" && ecranDoi.innerText === "") {
+    numarUnu = parseInt(ecranUnu.innerText);
+    ecranDoi.innerText = ecranUnu.innerText;
+    ecranUnu.innerText = "";
+  } else if (ecranDoi != "" && ecranUnu != "") {
+    numarUnu = parseInt(ecranDoi.innerText);
+    // trebuie un check pentru operatorul trecut si pentru operatorul curent(momentul clickului)
+    console.log(numarUnu + " " + numarDoi);
+    if (ecranUnu.innerText != "") {
+      numarDoi = parseInt(ecranUnu.innerText);
+      ecranUnu.innerText = "";
+    }
+    if (operator === "+") {
+      rezultat = numarUnu + numarDoi;
+      console.log(rezultat);
+      ecranDoi.innerText = rezultat;
+
+      ecranUnu.innerText = "";
+    } else if (operator === "/") {
+      rezultat = numarUnu / numarDoi;
+      console.log(rezultat);
+      ecranDoi.innerText = rezultat;
+
+      ecranUnu.innerText = "";
+    } else if (operator === "-") {
+      rezultat = numarUnu - numarDoi;
+      console.log(rezultat);
+      ecranDoi.innerText = rezultat;
+
+      ecranUnu.innerText = "";
+    } else if (operator === "*") {
+      rezultat = numarUnu * numarDoi;
+      console.log(rezultat);
+      ecranDoi.innerText = rezultat;
+
+      ecranUnu.innerText = "";
+    } else if (operator === "%") {
+      rezultat = numarUnu % numarDoi;
+      console.log(rezultat);
+      ecranDoi.innerText = rezultat;
+
+      ecranUnu.innerText = "";
+    }
   }
 };
 
-operator = "";
-let num1;
-let num2;
-
-const resetFunction = () => {
-  calcDisplay.innerText = "";
-  calcDisplayTwo.innerText = "";
-  operatorScreen.innerText = "";
-  num1 = "";
-  num2 = "";
-};
-
-const handleBackspace = () => {
-  calcDisplay.innerText = calcDisplay.innerText.slice(0, -1);
-};
-
-const handleClick = (e) => {
-  calcDisplay.innerText += e.target.innerText;
-  determineOperator(e);
-  if (
-    (calcDisplay.innerText.includes("+") ||
-      calcDisplay.innerText.includes("-") ||
-      calcDisplay.innerText.includes("*") ||
-      calcDisplay.innerText.includes("/") ||
-      calcDisplay.innerText.includes("%")) &&
-    calcDisplayTwo.innerText !== ""
-  ) {
-    num1 = calcDisplayTwo.innerText;
-    num2 = calcDisplay.innerText.slice(0, -1);
-    calcDisplayTwo.innerText = "";
-    let result = operatieActiva(operator, num1, num2);
-    console.log(num1 + " " + num2);
-    calcDisplayTwo.innerText = result;
-    calcDisplay.innerText = "";
-  } else if (
-    calcDisplay.innerText.includes("+") ||
-    calcDisplay.innerText.includes("-") ||
-    calcDisplay.innerText.includes("*") ||
-    calcDisplay.innerText.includes("/") ||
-    calcDisplay.innerText.includes("%")
-  ) {
-    determineOperator(e);
-    console.log(num1 + " " + num2);
-    calcDisplayTwo.innerText = calcDisplay.innerText.slice(0, -1);
-    num1 = calcDisplayTwo.innerText;
-
-    calcDisplay.innerText = "";
-  }
-};
-
-const determineOperator = (e) => {
-  if (
-    e.target.innerText === "+" ||
-    e.target.innerText === "-" ||
-    e.target.innerText === "*" ||
-    e.target.innerText === "/" ||
-    e.target.innerText === "%"
-  )
-    operator = e.target.innerText;
-  operatorScreen.innerText = operator;
-  console.log(operator);
-};
-
-digits.forEach((e) => {
-  e.addEventListener("click", handleClick);
+butoane.forEach((buton) => {
+  buton.addEventListener("click", handleButoane);
 });
-backspace.addEventListener("click", handleBackspace);
 
-resetButton.addEventListener("click", resetFunction);
-
-// OPERATII
+actiuni.forEach((actiune) => {
+  actiune.addEventListener("click", handleActiune);
+});

@@ -12,7 +12,7 @@ body {
   grid-template-columns: repeat(4, auto);
 }
 
-.button,
+.actiuni,
 .buttons,
 .buttonz {
   display: flex;
@@ -27,7 +27,7 @@ body {
   background-color: rgb(0, 214, 252);
 }
 
-.button:hover {
+.actiuni:hover {
   background-color: cadetblue;
 }
 
