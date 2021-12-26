@@ -39,7 +39,13 @@ const handleButoane = (e) => {
   ecranUnu.innerText += e.target.innerText;
 };
 
-const executaActiune = (semnVechi) => {
+const executaActiune = (semnVechi, semnNou) => {
+  if (
+    (ecranDoi.innerText === "" || ecranUnu.innerText === "") &&
+    semnNou.innerText === "="
+  ) {
+    return;
+  }
   if (semnVechi === "+") {
     rezultat = numarUnu + numarDoi;
     console.log(rezultat);
@@ -81,11 +87,16 @@ const executaActiune = (semnVechi) => {
 
 handleActiune = (e) => {
   // Multiple apasari ale unui buton de semn
+
   if (
-    ecranUnu.innerText === "" &&
-    ecranOperator.innerText != "" &&
-    ecranDoi.innerText != ""
+    (ecranUnu.innerText === "" &&
+      ecranOperator.innerText != "" &&
+      ecranDoi.innerText != "") ||
+    (ecranUnu.innerText === "" &&
+      ecranOperator.innerText != "" &&
+      ecranDoi.innerText == "")
   ) {
+    ecranOperator.innerText = e.target.innerText;
     return;
   }
 
@@ -111,7 +122,7 @@ handleActiune = (e) => {
     numarDoi = parseFloat(ecranUnu.innerText);
     ecranUnu.innerText = "";
     // ExecutamOperatia
-    executaActiune(operatorVechi);
+    executaActiune(operatorVechi, operator);
   }
 };
 
@@ -126,3 +137,5 @@ actiuni.forEach((actiune) => {
 reset.addEventListener("click", resetFunction);
 
 backSpace.addEventListener("click", backFunction);
+
+butonEgal.addEventListener("click", handleActiune);

@@ -1,77 +1,114 @@
-* {
+html {
+  font-size: 62.5%;
   box-sizing: border-box;
 }
-h1 {
-  text-align: center;
-}
-body {
+
+*,
+*::before,
+*::after {
   margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
 .calc {
+  max-width: 500px;
+  margin: auto;
   display: grid;
-  justify-content: center;
-  align-content: center;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  padding: 20px;
 }
 
 .actiuni,
 .buttons,
 .buttonz {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  width: 100px;
-  border: 2px solid #1b1816;
+  height: 60px;
+  background-color: #fff;
+  border-radius: 3px;
+  border: 1px solid #c4c4c4;
+  background-color: transparent;
+  font-size: 2rem;
+  color: #333;
+  background-image: linear-gradient(
+    to bottom,
+    transparent,
+    transparent 50%,
+    rgba(0, 0, 0, 0.04)
+  );
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.15),
+    0 1px 0 0 rgba(255, 255, 255, 0.15);
+  text-shadow: 0 1px rgba(255, 255, 255, 0.4);
 }
 
-.actiuni {
-  background-color: grey;
-}
-.buttonz {
-  color: whitesmoke;
-  background-color: tomato;
-}
-
-.buttons:hover {
-  background-color: rgb(0, 214, 252);
-}
-
+.buttons:hover,
 .actiuni:hover {
-  background-color: cadetblue;
+  background-color: #eaeaea;
 }
 
-.buttonz:hover {
-  background-color: darkgreen;
+#reset {
+  background-color: #f0595f;
+  border-color: #b0353a;
+  color: #fff;
+}
+
+#reset:hover {
+  background-color: #f17377;
+}
+
+#egal {
+  background-color: #2e86c0;
+  border-color: #337cac;
+  color: #fff;
+  height: 100%;
+  grid-area: 2 / 4 / 6 / 5;
+}
+
+#egal:hover {
+  background-color: #4e9ed4;
+}
+
+#back {
+  background-color: #f0595f;
+  border-color: #b0353a;
+  color: #fff;
+}
+#back:hover {
+  background-color: #f17377;
 }
 
 .screen {
-  display: block;
-  font-family: arial;
-  font-size: 24px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  max-width: 470px;
+  font-size: 2.2rem;
+  height: 120px;
+  border: none;
   margin: auto;
-  width: 400px;
+  color: #fff;
+  text-align: center;
 }
 
 #screen-two {
-  text-align: center;
   display: block;
-  height: 25px;
+  height: 40px;
+  line-height: 40px;
   background-color: rgb(197, 138, 245);
 }
 #screen-one {
-  text-align: center;
   display: block;
-  height: 25px;
+  height: 40px;
+  line-height: 40px;
   min-width: 300px;
   background-color: rgb(112, 228, 228);
 }
 
 #operator-screen {
-  text-align: center;
   display: block;
-  height: 25px;
+  height: 40px;
+  line-height: 40px;
   min-width: 25px;
   background-color: rgb(228, 158, 112);
 }
