@@ -49,7 +49,7 @@ html {
 }
 
 #reset {
-  background-color: #f0595f;
+  background-color: rgb(228, 158, 112);
   border-color: #b0353a;
   color: #fff;
 }
@@ -59,19 +59,20 @@ html {
 }
 
 #egal {
-  background-color: #2e86c0;
-  border-color: #337cac;
-  color: #fff;
+  background-color: rgb(192, 191, 194);
+  border-color: #fafafa;
+  color: rgb(15, 15, 15);
+  font-weight: bold;
   height: 100%;
   grid-area: 2 / 4 / 6 / 5;
 }
 
 #egal:hover {
-  background-color: #4e9ed4;
+  background-color: #b8b9b9;
 }
 
 #back {
-  background-color: #f0595f;
+  background-color: rgb(228, 158, 112);
   border-color: #b0353a;
   color: #fff;
 }
@@ -80,9 +81,13 @@ html {
 }
 
 .screen {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 30px;
+
   padding-top: 10px;
   padding-bottom: 10px;
-  max-width: 470px;
+  max-width: 460px;
   font-size: 2.2rem;
   height: 120px;
   border: none;
@@ -93,22 +98,26 @@ html {
 
 #screen-two {
   display: block;
+  font-size: 30px;
   height: 40px;
+  color: #333;
   line-height: 40px;
-  background-color: rgb(197, 138, 245);
+  background-color: rgb(192, 191, 194);
 }
 #screen-one {
   display: block;
+  font-size: 30px;
   height: 40px;
+  color: #2e86c0;
   line-height: 40px;
-  min-width: 300px;
-  background-color: rgb(112, 228, 228);
+  background-color: rgb(6, 7, 7);
 }
 
 #operator-screen {
   display: block;
+  font-size: 30px;
   height: 40px;
+  color: #c02e2e;
   line-height: 40px;
-  min-width: 25px;
   background-color: rgb(228, 158, 112);
 }
