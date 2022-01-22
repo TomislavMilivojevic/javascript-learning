@@ -1,8 +1,8 @@
-import cors from "cors";
 import express from "express";
 const app = express();
 // Error handler
 import "express-async-errors";
+import morgan from "morgan";
 // DB and authenticate user
 import connectDB from "./db/connect.js";
 
@@ -17,13 +17,15 @@ import dotenv from "dotenv";
 // DB and authenticator
 dotenv.config();
 
-app.use(cors());
+if (process.env.NODE_ENV !== "production") {
+  app.use(morgan("dev"));
+}
 
 // make JSON data available inside the controllers since we will have post requests
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("welcome");
+app.get("/api/v1", (req, res) => {
+  res.json({ msg: "API!" });
 });
 // From routes
 app.use("/api/v1/auth", authRouter);
