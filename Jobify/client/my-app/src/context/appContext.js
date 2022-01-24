@@ -11,6 +11,8 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
+  TOGGLE_SIDEBAR,
+  LOUGOUT_USER,
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -27,6 +29,7 @@ const initialState = {
   token: token,
   userLocation: userLocation || "",
   jobLocation: userLocation || "",
+  showSidebar: false,
 };
 
 const AppContext = React.createContext();
@@ -79,6 +82,7 @@ const AppProvider = ({ children }) => {
   };
 
   const loginUser = async (currentUser) => {
+    // MAYBE A BUG ->  Error 500 in the terminal, 200 on the front-end
     dispatch({ type: LOGIN_USER_BEGIN });
     try {
       const { data } = await axios.post("api/v1/auth/login", currentUser);
@@ -98,9 +102,24 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  const toggleSidebar = () => {
+    dispatch({ type: TOGGLE_SIDEBAR });
+  };
+
+  const logoutUser = () => {
+    dispatch({ type: LOUGOUT_USER });
+    removeUserToLocalStorage();
+  };
   return (
     <AppContext.Provider
-      value={{ ...state, displayAlert, registerUser, loginUser }}
+      value={{
+        ...state,
+        displayAlert,
+        registerUser,
+        loginUser,
+        toggleSidebar,
+        logoutUser,
+      }}
     >
       {children}
     </AppContext.Provider>

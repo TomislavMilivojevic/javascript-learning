@@ -16,6 +16,7 @@ const register = async (req, res) => {
   const user = await User.create({ name, email, password });
   // JWT Step two use the token +
   const token = user.createJWT();
+
   res.status(StatusCodes.CREATED).json({
     // Object will exclude the hashed password from the request
     user: {
@@ -44,10 +45,26 @@ const login = async (req, res) => {
 
   user.password = undefined;
   res.status(StatusCodes.OK).json({ user, token, location: user.location });
-  res.send("Login Successful");
+  // res.send("Login Successful"); THIS ISH GIVE AN ERROR    "cannot set headers after they are sent to the client"
 };
 const updateUser = async (req, res) => {
-  res.send("Update user");
+  const { email, name, lastName, location } = req.body;
+  if (!email || !name || !lastName || !location) {
+    throw new BadRequestError("Please provide all details");
+  }
+  const user = await User.findOne({ _id: req.user.userId });
+
+  user.email = email;
+  user.name = name;
+  user.lastName = lastName;
+  user.location = location;
+
+  await user.save();
+
+  const token = user.createJWT();
+
+  res.status(StatusCodes.OK).json({ user, token, location: user.location });
+  // res.send("Update user");
 };
 
 export { register, login, updateUser };
